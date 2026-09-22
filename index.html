@@ -6,9 +6,11 @@
 <title>Magic+ English Academy · Clases de Inglés Online y Presencial</title>
 <meta name="description" content="Academia de inglés online y presencial en Solares y Sarón (Cantabria). Preparación oficial Cambridge, APTIS, EOI, niños, opositores y empresas. 2 clases de prueba gratis. 98% aprobados." />
 <meta property="og:title" content="Magic+ English Academy · Aprende inglés y aprueba tu examen oficial" />
-<meta property="og:description" content="Clases online y presenciales en Cantabria. Cambridge, APTIS, EOI, niños desde 4 años, oposiciones y empresas. 2 clases de prueba GRATIS." />
+<meta property="og:description" content="Clases online y presenciales en Cantabria. Cambridge, APTIS, EOI, niños desde 3 años, oposiciones y empresas. 2 clases de prueba GRATIS." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://cuentavicentpro-cloud.github.io/magic-academy/" />
+<meta property="og:url" content="https://magic-plus-academy.vercel.app/" />
+<meta property="og:image" content="https://www.magicplus.es/wp-content/uploads/2022/09/cropped-MAGIC.png" />
+<meta name="theme-color" content="#006a69" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23006a69'/%3E%3Ctext x='50%25' y='60%25' text-anchor='middle' dy='.35em' fill='white' font-family='sans-serif' font-weight='800' font-size='40'%3EM%2B%3C/text%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -126,11 +128,13 @@ tailwind.config = {
 
   @media (prefers-reduced-motion: reduce) {
     .marquee-track, .floaty, .floaty-slow, .ping-dot::after, .shine::after, .bars span { animation: none !important; }
+    .rv { opacity: 1 !important; transform: none !important; }
     html { scroll-behavior: auto; }
   }
+
+  body.editing #app { pointer-events: none; }
+  body.editing #app [contenteditable], body.editing #app [data-img] { pointer-events: auto; }
 </style>
-<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 </head>
 <body class="bg-bg text-ink font-sans antialiased" style="--ink:11,28,48;">
 <noscript>

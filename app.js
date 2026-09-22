@@ -40,6 +40,9 @@
       else { if (!a[k] || typeof a[k] !== 'object') a[k] = {}; return a[k]; }
     }, o);
   }
+  function shade(rgb, f) {
+    return rgb.split(',').map(function (c) { return Math.round(parseInt(c, 10) * f); }).join(',');
+  }
   function esc(s) {
     return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
@@ -69,10 +72,10 @@
       '<div class="max-w-7xl mx-auto flex items-center gap-6 marquee-track" style="--speed:26s">' +
       '<span>' + esc(DATA.announce.text) + '</span><span class="opacity-40">•</span>' +
       '<a class="hover:underline flex items-center gap-1" href="' + waLink(DATA.contact.wa1) + '" target="_blank" rel="noopener"><span class="material-symbols-outlined text-[15px]">call</span>' + esc(DATA.contact.phone1) + '</a><span class="opacity-40">•</span>' +
-      '<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">pin_drop</span>Solares &amp; Sarón (Cantabria)</span><span class="opacity-40">•</span>' +
+      '<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">pin_drop</span>' + esc(DATA.contact.places || 'Solares &amp; Sarón (Cantabria)') + '</span><span class="opacity-40">•</span>' +
       '<span>' + esc(DATA.announce.text) + '</span><span class="opacity-40">•</span>' +
       '<a class="hover:underline flex items-center gap-1" href="' + waLink(DATA.contact.wa1) + '" target="_blank" rel="noopener"><span class="material-symbols-outlined text-[15px]">call</span>' + esc(DATA.contact.phone1) + '</a><span class="opacity-40">•</span>' +
-      '<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">pin_drop</span>Solares &amp; Sarón (Cantabria)</span><span class="opacity-40">•</span>' +
+      '<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">pin_drop</span>' + esc(DATA.contact.places || 'Solares &amp; Sarón (Cantabria)') + '</span><span class="opacity-40">•</span>' +
       '</div></div>' +
       '<div id="site-nav" class="bg-white/85 backdrop-blur-xl border-b border-soft shadow-card transition-all">' +
       '<div class="max-w-7xl mx-auto h-16 px-4 md:px-6 flex items-center justify-between gap-4">' +
@@ -164,11 +167,11 @@
 
   function programs() {
     var cards = DATA.programs.items.map(function (p, i) {
-      var feats = p.features.map(function (f) {
-        return '<li class="flex items-start gap-2 text-mute"><span class="material-symbols-outlined text-brand text-[18px] mt-0.5">check_circle</span>' + esc(f) + '</li>';
+      var feats = p.features.map(function (f, j) {
+        return '<li class="flex items-start gap-2 text-mute"><span class="material-symbols-outlined text-brand text-[18px] mt-0.5">check_circle</span><span data-edit="programs.items.' + i + '.features.' + j + '">' + esc(f) + '</span></li>';
       }).join('');
       return '<div class="glow-card relative bg-white rounded-2xl p-6 shadow-card hover:shadow-lift hover:-translate-y-1.5 transition-all duration-300 flex flex-col group rv" style="--d:' + (i * 0.07) + 's">' +
-        (p.hot ? '<span ' + attr('programs.items.' + i + '.tag') + ' class="absolute -top-3 right-5 bg-accent text-white px-3 py-0.5 rounded-full text-[11px] font-extrabold uppercase tracking-wide">Más Rápido</span>' : '') +
+        (p.hot ? '<span class="absolute -top-3 right-5 bg-accent text-white px-3 py-0.5 rounded-full text-[11px] font-extrabold uppercase tracking-wide">Más Rápido</span>' : '') +
         '<div class="flex items-center justify-between mb-3"><span ' + attr('programs.items.' + i + '.tag') + ' class="px-2.5 py-1 rounded-lg bg-soft text-brand text-[12px] font-bold">' + esc(p.tag) + '</span>' +
         '<span class="material-symbols-outlined text-[30px] text-brand group-hover:scale-125 group-hover:rotate-6 transition-transform duration-300">' + esc(p.icon) + '</span></div>' +
         '<h3 class="text-xl font-bold tracking-tight group-hover:text-brand transition-colors" ' + attr('programs.items.' + i + '.title') + '>' + esc(p.title) + '</h3>' +
@@ -221,7 +224,7 @@
         '<span class="text-[12px] text-mute" ' + attr('team.items.' + i + '.note') + '>' + esc(t.note) + '</span></div></div>' +
         '<p class="mt-4 text-sm text-mute leading-relaxed italic flex-1" ' + attr('team.items.' + i + '.bio') + '>' + esc(t.bio) + '</p>' +
         '<div class="flex flex-wrap gap-1.5 mt-4">' + tags + '</div>' +
-        '<a href="' + waLink(t.wa === 2 ? DATA.contact.wa2 : DATA.contact.wa1) + '?text=Hola%20' + esc(t.name.split(' ')[0]) + '%2C%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener" class="mt-5 inline-flex items-center justify-center gap-1.5 py-2 rounded-xl bg-soft text-brand font-bold hover:bg-brand hover:text-white transition-colors text-sm">' +
+        '<a href="' + waLink(t.wa === 2 ? DATA.contact.wa2 : DATA.contact.wa1) + '?text=Hola%20' + encodeURIComponent(t.name.split(' ')[0]) + '%2C%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener" class="mt-5 inline-flex items-center justify-center gap-1.5 py-2 rounded-xl bg-soft text-brand font-bold hover:bg-brand hover:text-white transition-colors text-sm">' +
         '<span class="material-symbols-outlined text-[16px]">chat</span><span ' + attr('team.items.' + i + '.cta') + '>' + esc(t.cta) + '</span></a></div>';
     }).join('');
     return '<section id="equipo" class="py-20 lg:py-24"><div class="max-w-7xl mx-auto px-4 md:px-6">' +
@@ -233,8 +236,8 @@
 
   function pricing() {
     var plans = DATA.pricing.plans.map(function (p, i) {
-      var feats = p.features.map(function (f) {
-        return '<li class="flex items-start gap-2 ' + (p.featured ? 'text-ink/70' : 'text-mute') + '"><span class="material-symbols-outlined text-[18px] mt-0.5 ' + (p.featured ? 'text-accent' : 'text-brand') + '">check_circle</span>' + esc(f[0]) + '</li>';
+      var feats = p.features.map(function (f, j) {
+        return '<li class="flex items-start gap-2 ' + (p.featured ? 'text-ink/70' : 'text-mute') + '"><span class="material-symbols-outlined text-[18px] mt-0.5 ' + (p.featured ? 'text-accent' : 'text-brand') + '">check_circle</span><span data-edit="pricing.plans.' + i + '.features.' + j + '.0">' + esc(f[0]) + '</span></li>';
       }).join('');
       var badge = p.badge ? '<span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent text-white px-4 py-1 rounded-full text-[13px] font-bold shadow-glowA whitespace-nowrap" ' + attr('pricing.plans.' + i + '.badge') + '>' + esc(p.badge) + '</span>' : '';
       return '<div class="relative bg-white rounded-2xl p-7 ' + (p.featured ? 'shadow-lift lg:scale-105 ring-2 ring-accent/70' : 'shadow-card hover:shadow-lift') + ' flex flex-col ' + (p.featured ? 'rg-brand' : '') + ' rv" style="--d:' + (i * 0.08) + 's">' + badge +
@@ -279,7 +282,8 @@
       '<span class="w-9 h-9 rounded-full g-badge grid place-items-center text-white"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.35 11.1H12v2.5h5.2c-.4 2.1-2.2 3.4-5.2 3.4-3.1 0-5.7-2.6-5.7-5.7S9 5.6 12 5.6c1.6 0 3 .6 4 1.6l1.8-1.8C16.3 4.1 14.2 3 12 3 7 3 3.1 7 3.1 12S7 21 12 21c5.1 0 8.4-3.6 8.4-8.7 0-.7-.1-1.2-.25-2.2z"/></svg></span>' +
       '<div><p class="font-bold leading-tight" ' + attr('testimonials.ratingTitle') + '>' + esc(DATA.testimonials.ratingTitle) + '</p>' +
       '<p class="text-[12px] text-mute" ' + attr('testimonials.ratingText') + '>' + esc(DATA.testimonials.ratingText) + '</p></div>' +
-      '<span class="text-amber-400 text-lg ml-1">★★★★★</span></div></div></div>' +
+      '<span class="text-amber-400 text-lg ml-1">★★★★★</span>' +
+      '<a class="ml-2 inline-flex items-center gap-1 text-[12px] font-bold text-brand hover:underline shrink-0" href="' + esc(DATA.contact.google) + '" target="_blank" rel="noopener"><span class="material-symbols-outlined text-[15px]">open_in_new</span>Ver reseñas</a></div></div></div>' +
       '<div class="marquee paused mb-5"><div class="marquee-track">' + frow + frow + '</div></div>' +
       '<div class="marquee paused reverse"><div class="marquee-track" style="--speed:38s">' + row2 + '</div></div></section>';
   }
@@ -382,7 +386,10 @@
       '<li class="flex items-center gap-2"><span class="material-symbols-outlined text-brand text-[18px]">call</span><a class="hover:text-brand" href="' + telLink(DATA.contact.phone2.replace(/[^0-9]/g, '')) + '">' + esc(DATA.contact.phone2) + '</a></li>' +
       '<li class="flex items-center gap-2"><span class="material-symbols-outlined text-brand text-[18px]">mail</span><a class="hover:text-brand" href="mailto:' + esc(DATA.contact.email) + '">' + esc(DATA.contact.email) + '</a></li>' +
       '<li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand text-[18px]">public</span><span><a class="hover:text-brand" href="' + esc(DATA.contact.web) + '" target="_blank" rel="noopener">' + esc(DATA.contact.web) + '</a></span></li>' +
-      '<li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand text-[18px]">place</span><span>Solares y Sarón · Cantabria</span></li></ul></div></div>' +
+      '<li class="flex items-center gap-2"><span class="material-symbols-outlined text-brand text-[18px]">photo_camera</span><a class="hover:text-brand" href="' + esc(DATA.contact.instagram) + '" target="_blank" rel="noopener">@magicesplus</a></li>' +
+      '<li class="flex items-center gap-2"><span class="material-symbols-outlined text-brand text-[18px]">thumb_up</span><a class="hover:text-brand" href="' + esc(DATA.contact.facebook) + '" target="_blank" rel="noopener">Magic+ en Facebook</a></li>' +
+      '<li class="flex items-center gap-2"><span class="material-symbols-outlined text-brand text-[18px]">star</span><a class="hover:text-brand" href="' + esc(DATA.contact.google) + '" target="_blank" rel="noopener">Deja tu reseña en Google</a></li>' +
+      '<li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand text-[18px]">place</span><span>' + esc(DATA.contact.places || 'Solares y Sarón · Cantabria') + '</span></li></ul></div></div>' +
       '<div class="mt-10 pt-6 border-t border-soft text-center text-[12px] text-mute" ' + attr('footer.legal') + '>' + esc(DATA.footer.legal) + '</div></footer>';
   }
 
@@ -433,6 +440,17 @@
       setTimeout(function () { t.remove(); }, 2600);
     }
 
+    function setEditable(on) {
+      var src = document.getElementById('app');
+      var all = src ? src.querySelectorAll('[data-edit]') : [];
+      for (var i = 0; i < all.length; i++) {
+        var el = all[i];
+        if (el.tagName === 'OPTION' || el.tagName === 'SELECT' || el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') continue;
+        if (on) el.setAttribute('contenteditable', 'true');
+        else el.removeAttribute('contenteditable');
+      }
+    }
+
     btn.onclick = function () {
       var on = !document.body.classList.contains('editing');
       document.body.classList.toggle('editing', on);
@@ -440,10 +458,12 @@
       panel.classList.toggle('flex', on);
       btn.innerHTML = on ? '<span class="material-symbols-outlined">close</span>' : '<span class="material-symbols-outlined">edit</span>';
       btn.title = on ? 'Salir del modo edición' : 'Modo edición visual';
+      setEditable(on);
       if (on) {
         renderJSONBox();
         panel.querySelector('#c-brand').value = r2x(DATA.colors.brand.split(','));
         panel.querySelector('#c-accent').value = r2x(DATA.colors.accent.split(','));
+        document.body.scrollTop = 0; document.documentElement.scrollTop = 0;
       }
     };
     document.getElementById('act-exit').onclick = btn.onclick;
@@ -455,7 +475,11 @@
       var rgb = x2r(val);
       DATA.colors[prop] = rgb;
       document.documentElement.style.setProperty('--' + prop, rgb);
-      if (prop === 'brand') document.documentElement.style.setProperty('--brand-2', rgb.replace(/\d+/g, function () { return '14,165,164'; }) === '14,165,164' ? rgb : DATA.colors['brand-2']);
+      if (prop === 'brand') {
+        var dark = shade(rgb, 0.82);
+        DATA.colors['brand-2'] = dark;
+        document.documentElement.style.setProperty('--brand-2', dark);
+      }
       saveOverlay();
       toast('Color actualizado en previsualización');
     }
@@ -482,31 +506,65 @@
     document.getElementById('act-import').onclick = function () {
       try {
         var o = JSON.parse(panel.querySelector('#json-box').value);
-        DATA = o;
-        localStorage.setItem(EDIT_KEY, JSON.stringify(o));
+        DATA = deepMerge(C, o);
+        try { localStorage.setItem(EDIT_KEY, JSON.stringify(DATA)); } catch (e) {}
         location.reload();
       } catch (e) { alert('El JSON no es válido.'); }
     };
 
     /* edición inline de textos */
     document.getElementById('app').addEventListener('input', function (e) {
-      var el = e.target && e.target.closest('[data-edit]');
+      var el = e.target && e.target.closest ? e.target.closest('[data-edit]') : null;
       if (!el || !document.body.classList.contains('editing')) return;
       var p = el.getAttribute('data-edit');
-      if (p) { pathSet(DATA, p, el.innerText.trim()); saveOverlay(); }
+      if (!p) return;
+      var val = (el.textContent || '').replace(/^\s+|\s+$/g, '');
+      var count = el.querySelector('[data-count]');
+      if (count) {
+        var n = parseInt(val.replace(/[^\d-]/g, ''), 10);
+        if (isNaN(n)) return;
+        count.setAttribute('data-count', String(n));
+        pathSet(DATA, p, n);
+      } else {
+        pathSet(DATA, p, val);
+      }
+      saveOverlay();
     });
     document.addEventListener('click', function (e) {
-      var img = e.target.closest && e.target.closest('[data-img]');
-      if (!img || !document.body.classList.contains('editing')) return;
-      e.preventDefault();
-      var p = img.getAttribute('data-img');
-      var cur = pathGet(DATA, p);
-      var url = prompt('Pega la URL de la nueva imagen (o déjalo vacío):', cur || '');
-      if (url === null) return;
-      pathSet(DATA, p, url);
-      if (img.tagName === 'IMG') img.src = url; else img.outerHTML = '<img class="w-full h-52 object-cover" src="' + esc(url) + '" alt="">';
-      saveOverlay();
-      toast('Imagen actualizada');
+      if (!document.body.classList.contains('editing')) return;
+      var t = e.target;
+      if (!t || !t.closest) return;
+      var img = t.closest('[data-img]');
+      if (img) {
+        e.preventDefault();
+        var p = img.getAttribute('data-img');
+        var cur = pathGet(DATA, p) || '';
+        var url = prompt('Pega la URL de la nueva imagen (o déjalo vacío):', cur);
+        if (url === null) return;
+        var cls = img.className || '';
+        var hcls = (cls.match(/\bh-\d+(?: sm:h-\d+)?/g) || []).join(' ');
+        if (img.tagName === 'IMG') {
+          if (!url) {
+            var fb = document.createElement('div');
+            fb.className = 'w-full ' + (hcls || 'h-52') + ' bg-brand/10 grid place-items-center text-brand text-3xl';
+            fb.textContent = '🖼️';
+            img.replaceWith(fb);
+          } else img.src = url;
+        } else if (url) {
+          var nh = hcls || 'h-52';
+          img.outerHTML = '<img data-img="' + p.replace(/"/g, '&quot;') + '" class="w-full ' + nh + ' object-cover" src="' + esc(url) + '" alt="">';
+        }
+        pathSet(DATA, p, url);
+        saveOverlay();
+        toast(url ? 'Imagen actualizada' : 'Imagen restablecida');
+        return;
+      }
+      var sm = t.closest('summary');
+      if (sm) { e.preventDefault(); e.stopPropagation(); return; }
+      var a = t.closest('a[href]');
+      if (a) { e.preventDefault(); return; }
+      var ed = t.closest('[data-edit]');
+      if (ed) { if (ed.tagName === 'A') e.preventDefault(); }
     });
 
     document.addEventListener('keydown', function (e) {
@@ -520,6 +578,11 @@
 
   /* ---------- Animaciones ---------- */
   function initAnimations() {
+    var revealAll = false;
+    if (!('IntersectionObserver' in window)) {
+      revealAll = true;
+      document.querySelectorAll('.rv').forEach(function (el) { el.classList.add('rv-in'); });
+    }
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (en.isIntersecting) {
@@ -528,7 +591,7 @@
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.rv').forEach(function (el) { obs.observe(el); });
+    document.querySelectorAll('.rv').forEach(function (el) { if (!revealAll) obs.observe(el); });
 
     /* contadores */
     var cObs = new IntersectionObserver(function (entries, self) {
@@ -549,7 +612,10 @@
         requestAnimationFrame(tick);
       });
     }, { threshold: 0.5 });
-    document.querySelectorAll('[data-count]').forEach(function (el) { cObs.observe(el); });
+    document.querySelectorAll('[data-count]').forEach(function (el) {
+      if (reduceMotion || revealAll) el.textContent = (+el.getAttribute('data-count')).toLocaleString('es-ES') + (el.getAttribute('data-suffix') || '');
+      else cObs.observe(el);
+    });
 
     /* parallax layers */
     var moving = !reduceMotion && !isTouch;
@@ -624,13 +690,22 @@
     /* nav activa */
     var links = document.querySelectorAll('.navlink');
     var map = {};
-    links.forEach(function (l) { if (l.getAttribute('href').startsWith('#')) map[l.getAttribute('href')] = l; });
+    links.forEach(function (l) {
+      var h = l.getAttribute('href');
+      if (h && h.charAt(0) === '#') {
+        (map[h] = map[h] || []).push(l);
+      }
+    });
     var secObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         Object.keys(map).forEach(function (k) {
-          if (k === '#' + en.target.id) { map[k].classList.add('text-brand', 'bg-soft'); }
-          else { map[k].classList.remove('text-brand', 'bg-soft'); }
+          var active = k === '#' + en.target.id;
+          map[k].forEach(function (l) {
+            l.classList.toggle('text-brand', active);
+            l.classList.toggle('bg-soft', active);
+            l.classList.toggle('text-mute', !active);
+          });
         });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
@@ -652,12 +727,10 @@
         ok.classList.remove('hidden');
         confetti();
         setTimeout(function () {
-          if (!prev) return;
-          form.reset(); btn.classList.remove('hidden'); btn.innerHTML = orig; ok.classList.add('hidden');
+          form.reset(); btn.classList.remove('hidden'); btn.innerHTML = orig; btn.disabled = false; ok.classList.add('hidden');
         }, 6000);
       }, 1400);
     });
-    var prev = true;
   }
 
   function confetti() {
@@ -693,23 +766,46 @@
       '@context': 'https://schema.org',
       '@type': 'EducationalOrganization',
       name: 'Magic+ English Academy',
-      url: 'https://cuentavicentpro-cloud.github.io/magic-academy/',
+      url: 'https://magic-plus-academy.vercel.app/',
       telephone: '+34' + DATA.contact.phone1,
       email: DATA.contact.email,
+      sameAs: [
+        'https://instagram.com/magicesplus/',
+        'https://www.facebook.com/magicplus.es/',
+        'https://g.page/r/CQYgrD4uKPgVEAg/review'
+      ],
       address: [
-        { '@type': 'PostalAddress', streetAddress: 'Av. Oviedo 11', addressLocality: 'Solares', addressRegion: 'Cantabria', postalCode: '39710', addressCountry: 'ES' },
+        { '@type': 'PostalAddress', streetAddress: 'Av. Oviedo 11, Bloque 2, bajo 1', addressLocality: 'Solares', addressRegion: 'Cantabria', postalCode: '39710', addressCountry: 'ES' },
         { '@type': 'PostalAddress', streetAddress: 'Travesía San Lázaro 18', addressLocality: 'Sarón', addressRegion: 'Cantabria', postalCode: '39620', addressCountry: 'ES' }
       ],
-      aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '15' },
-      url: 'https://magicplus.es'
+      aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '15' }
     });
     document.head.appendChild(ld);
   }
 
+  /* Colores y accesibilidad aplicados en el arranque */
+  function applyBootColors() {
+    var root = document.documentElement;
+    var cs = DATA.colors || {};
+    if (cs.brand) {
+      root.style.setProperty('--brand', cs.brand);
+      root.style.setProperty('--brand-2', cs['brand-2'] || shade(cs.brand, 0.82));
+    }
+    if (cs.accent) root.style.setProperty('--accent', cs.accent);
+  }
+  function ariaPass() {
+    var src = document.getElementById('app');
+    if (!src) return;
+    var ic = src.querySelectorAll('.material-symbols-outlined');
+    for (var i = 0; i < ic.length; i++) ic[i].setAttribute('aria-hidden', 'true');
+  }
+
   /* ---------- Boot ---------- */
   function boot() {
+    applyBootColors();
     document.getElementById('app').innerHTML =
       header() + hero() + logos() + metrics() + programs() + method() + team() + pricing() + testimonials() + venues() + faq() + ctaForm() + footer();
+    ariaPass();
     seo();
     initUI();
     initAnimations();

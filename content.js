@@ -23,12 +23,16 @@ window.MAGIC_CONTENT = {
   "contact": {
     "phone1": "675 512 216",
     "phone1Tel": "675512216",
-    "phone2": "636 741 944",
-    "phone2Tel": "636741944",
-    "wa1": "34675512216",
-    "wa2": "34636741944",
+    "phone2": "651 468 495",
+    "phone2Tel": "651468495",
+    "wa1": "34651468495",
+    "wa2": "34675512216",
     "web": "https://magicplus.es",
-    "email": "info@magicplus.es"
+    "email": "info@magicplus.es",
+    "places": "Cantabria · Santander, Solares y Sarón",
+    "instagram": "https://www.instagram.com/magicesplus/",
+    "facebook": "https://www.facebook.com/magicplus.es",
+    "google": "https://g.page/r/CQYgrD4uKPgVEAg/review"
   },
   "announce": {
     "text": "🎉 Promoción activa: 2 Clases de Prueba 100% Gratis · Plazas limitadas",
@@ -55,13 +59,13 @@ window.MAGIC_CONTENT = {
     "ratingLabel": "en Google Reviews",
     "proof1": "Más de 1.200 alumnos certificados",
     "proof2": "98% Aprobados",
-    "imgAlt": "Clase online en directo de Magic+ Academy para niños y preparación de exámenes Cambridge",
-    "imgSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuCmCH3cKmhcQDMOQEGKD0QcxiklPacA5BRU8IT9Wji7mbTctx7AnAdec2FgSGqH-6trISbfnoY6USFpLGSNrcAwMBPAhN6ZHm4RIfdkdOdhkrRqs57tiODs4xDNb5I_BlFM-LzQY3UvQe-5szpRtHFqlSEBHEXlf9Ladif-7RCwZ-c1H6Euy471NysOglCc2QhVuGhNROLnX8jsnqSxYBvUeoGe_PTxH6MlezbIOhBegZkg1ciwPeTSF4VHU6v9_qAu0gg",
-    "photoAlt": "Cristina, alumna certificada C1 APTIS en Magic+ Solares",
-    "photoSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuB3nJW6xD6MZDll3pvMplV_biq1jKDJmxkj302XADiI5tDYAjMBMggnfRQC2fICmeqhPl_On1iiGbgdODOQvRzN19LwLkuyv_ZGUq6608_5ryHZONvHihqqwOVZXE4qOm_J1u6NHT4l7SdZugUN02DNi6BkF--NWWl4iTw6SDqHqG1cIVp76FkzLNT-fWmhUs4HuAEC_2uBRlVbqaHeJY4Kr_jI6n7kkkttWVnS24FogApIz-HmY4_ehz967GQcZFnbJMc",
-    "photoCaption": "¡Convocatoria Superada!",
-    "photoName": "Cristina · Nivel C1 Aptis",
-    "photoSub": "British Council ESOL",
+    "imgAlt": "Clase de inglés para niños de Magic+ Academy con método directo y preparación de exámenes Cambridge",
+    "imgSrc": "https://www.magicplus.es/wp-content/uploads/2022/01/cropped-cropped-cropped-Clases-con-filtro-scaled-1-1.jpg",
+    "photoAlt": "Alumnos de Magic+ Academy en clase de inglés para niños y Young Learners",
+    "photoSrc": "https://www.magicplus.es/wp-content/uploads/2022/01/cropped-cropped-cropped-cropped-cropped-cropped-cropped-Kids-2-scaled-1-768x581.jpg",
+    "photoCaption": "Inmersión desde los 3 años",
+    "photoName": "Magic Kids & Teens",
+    "photoSub": "Solares y Sarón · Cantabria",
     "badgeTitle": "Garantía de Aprobado",
     "badgeSub": "Cambridge & APTIS Prep",
     "callLabel": "Clase Online en Directo · Magic+ Zoom",
@@ -95,9 +99,9 @@ window.MAGIC_CONTENT = {
         "cta": "Probar APTIS Gratis"
       },
       {
-        "tag": "4 a 17 años", "icon": "smart_toy", "title": "Magic Kids & Teens",
-        "desc": "Inmersión activa y natural. Clases interactivas vía Zoom con dinámicas lúdicas, pizarras digitales, cuentos y preparación temprana Young Learners.",
-        "features": ["Pierden el miedo a hablar desde la primera sesión", "Grupos súper reducidos (máx. 5-6 alumnos)", "Informes quincenales directos para padres"],
+        "tag": "3 a 17 años", "icon": "smart_toy", "title": "Magic Kids & Teens",
+        "desc": "Inmersión activa y natural. Clases íntegras en inglés desde los 3 años, con dinámicas lúdicas, pizarras digitales, cuentos y preparación temprana de los exámenes Young Learners de Cambridge.",
+        "features": ["Pierden el miedo a hablar desde la primera sesión", "Clases 2 días por semana en grupos reducidos", "Material de Cambridge University para cada edad y nivel"],
         "cta": "Clase Gratis para mi Hijo/a"
       },
       {
@@ -132,10 +136,10 @@ window.MAGIC_CONTENT = {
     "cta": "Probar una clase online en vivo",
     "bannerTitle": "100% Speaking & Listening",
     "bannerText": "Conversación fluida guiada por docentes especializados.",
-    "screenLabel": "Fun For Flyers · pantalla dividida alumno + libro",
+    "screenLabel": "Clase Kids · título oficial Cambridge Young Learners",
     "screenBadge": "Sesión Real",
-    "screenAlt": "Captura real de clase de inglés online para niños con Zoom y libro interactivo Cambridge",
-    "screenSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuB6NXY4yVPou2t1XqtvTedEGo-yji9aWJuVfl5C79Milq1GmLmNCF0UPSIjJYyrM9k7kGiHtPilQ3qSPCDZK3BWi81jtqwJht3PQvwI9VUB9hMmdrONKFlz192KXQixlxjNL3c_qqagvY2Z5AQ6fnMxVIVyH86X7wmm0yPFDkeIG06pYT_hLQS5qPOyzrnEuCS9MNhds9wiFC27swiykjdEIDe-zFmk4EyVYxHe9wy6PH3iooT7l8ftXS-bQmYAb3Sw6_w"
+    "screenAlt": "Clase de inglés para niños de Magic+ con método directo y libro oficial Cambridge",
+    "screenSrc": "https://www.magicplus.es/wp-content/uploads/2022/01/cropped-cropped-cropped-Comedor-con-filtro-scaled-1.jpg"
   },
   "team": {
     "eyebrow": "Cercanía y Vocación",
@@ -143,19 +147,19 @@ window.MAGIC_CONTENT = {
     "body": "Profesionales certificados con años de experiencia en preparación de exámenes oficiales. Sin rotación continua de profesores.",
     "items": [
       {
-        "init": "L", "color": "teal", "name": "Lorena", "role": "Directora Pedagógica", "note": "Especialista Cambridge & APTIS",
-        "bio": "«Mi misión es que pierdas el bloqueo con el speaking y conozcas exactamente qué busca cada examinador para garantizar tu aprobado oficial.»",
-        "tags": ["Aptis Advanced", "Cambridge C1/C2", "Adultos"], "wa": 1, "cta": "Contactar con Lorena"
+        "init": "ED", "color": "teal", "name": "Equipo Docente", "role": "Preparación oficial Cambridge & APTIS",
+        "bio": "Profesores y profesoras certificados con años de experiencia en preparación de exámenes oficiales. Conocen exactamente qué busca cada examinador para que llegues seguro al día del examen.",
+        "tags": ["Cambridge B1-C2", "APTIS", "Adultos"], "wa": 1, "cta": "Contactar por WhatsApp"
       },
       {
-        "init": "R", "color": "indigo", "name": "Raúl", "role": "Profesor Senior", "note": "Business English & Oposiciones",
-        "bio": "«Estructuro cada sesión de forma estratégica para opositores y profesionales con poco tiempo, asegurando el máximo rendimiento en cada clase.»",
-        "tags": ["Oposiciones", "Business English", "Job Interviews"], "wa": 2, "cta": "Contactar con Raúl"
+        "init": "KT", "color": "indigo", "name": "Coordinación Kids & Teens", "role": "Atención a las familias",
+        "bio": "Clases íntegras en inglés desde los 3 años con grupos reducidos. Las familias reciben seguimiento continuo del progreso y material de Cambridge University adaptado a cada edad.",
+        "tags": ["Desde 3 años", "Young Learners", "2 días por semana"], "wa": 2, "cta": "Contactar por WhatsApp"
       },
       {
-        "init": "P", "color": "orange", "name": "Pol", "role": "Coordinador Kids & Teens", "note": "Metodología gamificada",
-        "bio": "«Los niños aprenden cuando se divierten. Creamos un entorno de confianza total donde expresarse en inglés es un juego natural y emocionante.»",
-        "tags": ["Young Learners", "Gamificación", "Teens B1/B2"], "wa": 1, "cta": "Contactar con Pol"
+        "init": "AE", "color": "orange", "name": "Adultos & Empresas", "role": "Formación bonificable FUNDAE",
+        "bio": "Acompañamiento flexible para profesionales, opositores y equipos con poco tiempo: horarios compatibles, planes intensivos y gestión completa del crédito FUNDAE.",
+        "tags": ["Oposiciones", "Business English", "FUNDAE"], "wa": 1, "cta": "Contactar por WhatsApp"
       }
     ]
   },
@@ -201,11 +205,11 @@ window.MAGIC_CONTENT = {
         "name": "Alejandro Z. · Reseña Google", "role": "APTIS superado", "google": true, "init": "A", "bg": "green"
       },
       {
-        "quote": "¡Aprobé el C1 de Aptis con nota máxima a la primera! Los simulacros periódicos y la paciencia infinita de Lorena fueron la clave absoluta.",
+        "quote": "¡Aprobé el C1 de Aptis con nota máxima a la primera! Los simulacros periódicos y el seguimiento del equipo docente fueron la clave absoluta.",
         "name": "Cristina R.", "role": "Aptis Advanced C1 superado", "google": false, "init": "C", "bg": "teal"
       },
       {
-        "quote": "Mi hija de 8 años empezó muy tímida y ahora habla en inglés con una soltura increíble. Pol hace las clases online amenas, dinámicas y divertidas. ¡Un diez para Magic+!",
+        "quote": "Mi hija de 8 años empezó muy tímida y ahora habla en inglés con una soltura increíble. El equipo hace las clases online amenas, dinámicas y divertidas. ¡Un diez para Magic+!",
         "name": "Miren G.", "role": "Madre de alumna de Primaria", "google": false, "init": "M", "bg": "indigo"
       },
       {
@@ -226,14 +230,14 @@ window.MAGIC_CONTENT = {
       {
         "place": "Sede Solares", "address": "Av. Oviedo 11, Bloque 2, bajo 1 · 39710 Solares, Cantabria",
         "hours": "Lunes a viernes · 16:00 - 20:00", "phone": "675 512 216", "maps": "https://www.google.com/maps/search/?api=1&query=Av.+Oviedo+11,+39710+Solares",
-        "imgSrc": "https://lh3.googleusercontent.com/aida-public/AB6AXuD2qAVzI36JtSuiSMVHGMUzHI4fKCzbXhBaVyNS_Lu-iESX1Lpt_GPCxEGAyImxV93mdN0-XXxIqjzTDhm8G1CUrTkYuThzzN-8D1tjF5JSEOJLi4wo752bte4aKgKgJ3UpXirLMZp55aXAGCsbNWlTczpQpM6M9MwhXsn7PrLJPFRpCOnkmSZX4R6u8AsL_faPCHBc3wyR2CW7gMxNQwRPQhwH3Cs8KbBFoe0wpBD8k0qK4tEB0bvLqfMhiFaik_SVhi8",
-        "imgAlt": "Fachada de la academia Magic+ en Solares, Cantabria"
+        "imgSrc": "https://www.magicplus.es/wp-content/uploads/2023/09/cropped-cropped-Foto-ext-Matropolis.jpg",
+        "imgAlt": "Exterior del centro de preparación de Cambridge de Magic+ en Solares, Cantabria"
       },
       {
         "place": "Sede Sarón", "address": "Travesía San Lázaro 18 · 39620 Sarón, Cantabria",
-        "hours": "Lunes, miércoles y viernes · 16:00 - 20:00", "phone": "636 741 944", "maps": "https://www.google.com/maps/search/?api=1&query=Traves%C3%ADa+San+L%C3%A1zaro+18,+39620+Sar%C3%B3n",
-        "imgSrc": "",
-        "imgAlt": "Academia Magic+ English Academy en Sarón, Cantabria"
+        "hours": "Lunes, miércoles y viernes · 16:00 - 20:00", "phone": "651 468 495", "maps": "https://www.google.com/maps/search/?api=1&query=Traves%C3%ADa+San+L%C3%A1zaro+18,+39620+Sar%C3%B3n",
+        "imgSrc": "https://www.magicplus.es/wp-content/uploads/2022/02/cropped-cropped-cropped-IMG-20190328-WA0003-1-1-1-2.jpg",
+        "imgAlt": "Clase de Magic+ Academy para niños en Sarón, Cantabria"
       }
     ]
   },
@@ -247,7 +251,7 @@ window.MAGIC_CONTENT = {
       },
       {
         "q": "¿Desde qué edad pueden empezar los niños?",
-        "a": "A partir de 4 años. Los grupos se organizan por edad y nivel (máximo 5-6 alumnos) y los padres reciben informes quincenales de progreso."
+        "a": "Desde los 3 años. Clases íntegras en inglés 2 días por semana, en grupos reducidos por edad y nivel, con material de Cambridge University y seguimiento de progreso para las familias."
       },
       {
         "q": "¿Puedo combinar clases online y presencial?",
