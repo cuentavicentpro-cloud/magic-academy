@@ -41,7 +41,7 @@
     }, o);
   }
   function shade(rgb, f) {
-    return rgb.split(',').map(function (c) { return Math.round(parseInt(c, 10) * f); }).join(',');
+    return rgb.trim().split(/[\s,]+/).map(function (c) { return Math.round(parseInt(c, 10) * f); }).join(' ');
   }
   function esc(s) {
     return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
@@ -68,14 +68,11 @@
     }).join('');
     return '' +
       '<header class="fixed top-0 inset-x-0 z-50">' +
-      '<div class="bg-brand text-white text-[13px] font-semibold py-1.5 px-4 overflow-hidden marquee">' +
-      '<div class="max-w-7xl mx-auto flex items-center gap-6 marquee-track" style="--speed:26s">' +
-      '<span>' + esc(DATA.announce.text) + '</span><span class="opacity-40">•</span>' +
-      '<a class="hover:underline flex items-center gap-1" href="' + waLink(DATA.contact.wa1) + '" target="_blank" rel="noopener"><span class="material-symbols-outlined text-[15px]">call</span>' + esc(DATA.contact.phone1) + '</a><span class="opacity-40">•</span>' +
-      '<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">pin_drop</span>' + esc(DATA.contact.places || 'Solares &amp; Sarón (Cantabria)') + '</span><span class="opacity-40">•</span>' +
-      '<span>' + esc(DATA.announce.text) + '</span><span class="opacity-40">•</span>' +
-      '<a class="hover:underline flex items-center gap-1" href="' + waLink(DATA.contact.wa1) + '" target="_blank" rel="noopener"><span class="material-symbols-outlined text-[15px]">call</span>' + esc(DATA.contact.phone1) + '</a><span class="opacity-40">•</span>' +
-      '<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">pin_drop</span>' + esc(DATA.contact.places || 'Solares &amp; Sarón (Cantabria)') + '</span><span class="opacity-40">•</span>' +
+      '<div class="bg-brand text-white text-[13px] font-semibold py-2 px-4">' +
+      '<div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-center">' +
+      '<span class="flex items-center gap-1.5">' + esc(DATA.announce.text) + '</span>' +
+      '<a class="hover:underline flex items-center gap-1" href="' + waLink(DATA.contact.wa1) + '" target="_blank" rel="noopener"><span class="material-symbols-outlined text-[15px]">call</span>' + esc(DATA.contact.phone1) + '</a>' +
+      '<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px]">pin_drop</span>' + esc(DATA.contact.places || 'Solares &amp; Sarón (Cantabria)') + '</span>' +
       '</div></div>' +
       '<div id="site-nav" class="bg-white/85 backdrop-blur-xl border-b border-soft shadow-card transition-all">' +
       '<div class="max-w-7xl mx-auto h-16 px-4 md:px-6 flex items-center justify-between gap-4">' +
@@ -426,8 +423,8 @@
     document.body.appendChild(panel);
 
     /* helpers */
-    function r2x(v) { return '#' + [0, 1, 2].map(function (i) { return (parseInt(v[i]) || 0).toString(16).padStart(2, '0'); }).join(''); }
-    function x2r(h) { var m = h.replace('#', '').match(/.{2}/g); return (parseInt(m[0], 16) + ',' + parseInt(m[1], 16) + ',' + parseInt(m[2], 16)); }
+    function r2x(v) { v = String(v).trim().split(/[\s,]+/); return '#' + [0, 1, 2].map(function (i) { return (parseInt(v[i]) || 0).toString(16).padStart(2, '0'); }).join(''); }
+    function x2r(h) { var m = h.replace('#', '').match(/.{2}/g); return parseInt(m[0], 16) + ' ' + parseInt(m[1], 16) + ' ' + parseInt(m[2], 16); }
     function saveOverlay() {
       try { localStorage.setItem(EDIT_KEY, JSON.stringify(DATA)); } catch (e) {}
     }
@@ -461,8 +458,8 @@
       setEditable(on);
       if (on) {
         renderJSONBox();
-        panel.querySelector('#c-brand').value = r2x(DATA.colors.brand.split(','));
-        panel.querySelector('#c-accent').value = r2x(DATA.colors.accent.split(','));
+        panel.querySelector('#c-brand').value = r2x(DATA.colors.brand);
+        panel.querySelector('#c-accent').value = r2x(DATA.colors.accent);
         document.body.scrollTop = 0; document.documentElement.scrollTop = 0;
       }
     };
@@ -616,6 +613,23 @@
       if (reduceMotion || revealAll) el.textContent = (+el.getAttribute('data-count')).toLocaleString('es-ES') + (el.getAttribute('data-suffix') || '');
       else cObs.observe(el);
     });
+
+    /* red de seguridad: si el observer no dispara (scroll incompleto, p.ej.),
+       revela al cabo de 2.5s lo que esté dentro del viewport */
+    setTimeout(function () {
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      document.querySelectorAll('.rv:not(.rv-in)').forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < vh && r.bottom > 0) el.classList.add('rv-in');
+      });
+      document.querySelectorAll('[data-count]').forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < vh && r.bottom > 0) {
+          var t = +el.getAttribute('data-count') || 0;
+          el.textContent = t.toLocaleString('es-ES') + (el.getAttribute('data-suffix') || '');
+        }
+      });
+    }, 2500);
 
     /* parallax layers */
     var moving = !reduceMotion && !isTouch;
@@ -787,11 +801,13 @@
   function applyBootColors() {
     var root = document.documentElement;
     var cs = DATA.colors || {};
+    var norm = function (v) { return String(v == null ? '' : v).trim().replace(/,\s*/g, ' '); };
     if (cs.brand) {
-      root.style.setProperty('--brand', cs.brand);
-      root.style.setProperty('--brand-2', cs['brand-2'] || shade(cs.brand, 0.82));
+      var b = norm(cs.brand);
+      root.style.setProperty('--brand', b);
+      root.style.setProperty('--brand-2', norm(cs['brand-2']) || shade(b, 0.82));
     }
-    if (cs.accent) root.style.setProperty('--accent', cs.accent);
+    if (cs.accent) root.style.setProperty('--accent', norm(cs.accent));
   }
   function ariaPass() {
     var src = document.getElementById('app');

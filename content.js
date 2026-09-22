@@ -16,9 +16,9 @@ window.MAGIC_CONTENT = {
     "subtitle": "Online & Presencial · Cantabria"
   },
   "colors": {
-    "brand": "0,106,105",
-    "brand-2": "14,165,164",
-    "accent": "241,109,13"
+    "brand": "0 106 105",
+    "brand-2": "14 165 164",
+    "accent": "241 109 13"
   },
   "contact": {
     "phone1": "675 512 216",
