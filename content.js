@@ -59,19 +59,19 @@ window.MAGIC_CONTENT = {
     "ratingLabel": "en Google Reviews",
     "proof1": "Más de 1.200 alumnos certificados",
     "proof2": "98% Aprobados",
-    "imgAlt": "Clase de inglés para niños de Magic+ Academy con método directo y preparación de exámenes Cambridge",
-    "imgSrc": "https://www.magicplus.es/wp-content/uploads/2022/01/cropped-cropped-cropped-Clases-con-filtro-scaled-1-1.jpg",
-    "photoAlt": "Alumnos de Magic+ Academy en clase de inglés para niños y Young Learners",
-    "photoSrc": "https://www.magicplus.es/wp-content/uploads/2022/01/cropped-cropped-cropped-cropped-cropped-cropped-cropped-Kids-2-scaled-1-768x581.jpg",
-    "photoCaption": "Inmersión desde los 3 años",
-    "photoName": "Magic Kids & Teens",
-    "photoSub": "Solares y Sarón · Cantabria",
+    "imgAlt": "Clase de inglés de Magic+ Academy con método directo y preparación de exámenes oficiales",
+    "imgSrc": "https://www.magicplus.es/wp-content/uploads/2022/02/cropped-cropped-IMG-20190328-WA0003-1-1-1-2.jpg",
+    "photoAlt": "Clase online en directo de Magic+ Academy con pizarra y alumnado participando",
+    "photoSrc": "https://www.magicplus.es/wp-content/uploads/2022/02/cropped-clase-adultos-online-naranja-scaled-1.jpg",
+    "photoCaption": "Clases en riguroso directo",
+    "photoName": "Clase Online en Directo",
+    "photoSub": "Online y Presencial · Cantabria",
     "badgeTitle": "Garantía de Aprobado",
     "badgeSub": "Cambridge & APTIS Prep",
     "callLabel": "Clase Online en Directo · Magic+ Zoom",
     "rec": "REC",
     "interactive": "100% Interactivo",
-    "lessonLabel": "Fun for Starters & Flyers Cambridge Prep"
+    "lessonLabel": "Preparación Cambridge · APTIS · Conversación"
   },
   "logosTitle": "Certificaciones y centros oficiales que nos respaldan",
   "logos": ["Cambridge English", "APTIS ESOL", "British Council", "CECFR", "EOI", "FUNDAE"],
@@ -236,8 +236,8 @@ window.MAGIC_CONTENT = {
       {
         "place": "Sede Sarón", "address": "Travesía San Lázaro 18 · 39620 Sarón, Cantabria",
         "hours": "Lunes, miércoles y viernes · 16:00 - 20:00", "phone": "651 468 495", "maps": "https://www.google.com/maps/search/?api=1&query=Traves%C3%ADa+San+L%C3%A1zaro+18,+39620+Sar%C3%B3n",
-        "imgSrc": "https://www.magicplus.es/wp-content/uploads/2022/02/cropped-cropped-cropped-IMG-20190328-WA0003-1-1-1-2.jpg",
-        "imgAlt": "Clase de Magic+ Academy para niños en Sarón, Cantabria"
+        "imgSrc": "https://www.magicplus.es/wp-content/uploads/2022/02/cropped-Bea-y-lara-scaled-1.jpg",
+        "imgAlt": "Clase de inglés de Magic+ Academy en Sarón, Cantabria"
       }
     ]
   },
