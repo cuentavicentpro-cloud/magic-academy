@@ -26,9 +26,22 @@
   function getData() {
     try {
       var raw = localStorage.getItem(EDIT_KEY);
-      if (raw) return deepMerge(C, JSON.parse(raw));
+      if (raw) {
+        var merged = deepMerge(C, JSON.parse(raw));
+        return restoreSrc(merged, C);
+      }
     } catch (e) {}
     return clone(C);
+  }
+  function restoreSrc(m, b) {
+    Object.keys(b || {}).forEach(function (k) {
+      if (b[k] && typeof b[k] === 'object' && !Array.isArray(b[k]) && m[k] && typeof m[k] === 'object') {
+        restoreSrc(m[k], b[k]);
+      } else if (/Src$/.test(k) && typeof b[k] === 'string' && b[k] && (!m[k] || m[k] === '')) {
+        m[k] = b[k];
+      }
+    });
+    return m;
   }
   var DATA = getData();
 
